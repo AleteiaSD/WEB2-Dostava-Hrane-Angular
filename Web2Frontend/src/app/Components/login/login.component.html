@@ -1,0 +1,51 @@
+
+  <section class="myform-area">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="form-area login-form">
+                    <div class="form-content">
+                        <h2>Login</h2>
+                        <p>Dobro dosli na nas sajt za dostavu hrane.</p>
+                        <div class="myform-button">
+                          <button (click)="LoginWithGoogle()" class="btn btn-danger btn-block  myform-btn1 google-sign-in"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+                            <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"/>
+                          </svg>oogle</button>
+                        </div>
+                        
+                    </div>
+                    <div class="form-input">
+                        <h2>Login Form</h2>
+                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                                <label class="text-muted" for="exampleInputEmail1">Email</label>
+                                <input formControlName="email" required type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> 
+                                <br>
+                                <div *ngIf="f['email'].touched && f['email'].invalid" class="alert alert-danger"> 
+                                    <div *ngIf="f['email'].errors && f['email'].errors['email']">Unesite email ispravno.</div>
+                                    Polje ne moze biti prazno
+                                </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="text-muted" for="exampleInputPassword1">Password</label>
+                              <input formControlName="password" required type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                              <br>
+                              <div *ngIf="f['password'].touched && f['password'].invalid" class="alert alert-danger">
+                                  <div *ngIf="f['password'].errors && f['password'].errors['required']">Unesite Password.</div>
+                                 
+                              </div>
+                            </div>
+                            <div class="myform-button">
+                                <button class="myform-btn" [disabled]="loginForm.invalid || loading" type="submit" >
+                                  <span *ngIf="loading"></span>Login</button>
+                            </div>
+                            <div class="myform-button">
+                              <button class="myform-btn" routerLink="/register">Go to Registration</button>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

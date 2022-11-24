@@ -1,0 +1,33 @@
+    <div style="justify-content: center;">
+
+    
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+      <table>
+      <th><div class="input-field">
+          <input matInput type="text" name="ime"
+             placeholder="Proizovd" formControlName="ime">
+      </div></th>
+      <th><div class="input-field">
+          <input min="0" matInput type="number"
+             placeholder="Cena" formControlName="cena">
+      </div>
+    </th>
+    <th><button class="btn btn-primary" type="submit" [disabled]="form.invalid">
+      Dodaj
+    </button></th>
+      <tr><div *ngFor="let control of  rolesFieldAsFormArray.controls ;let i = index;" formArrayName='sastojaks' >
+          <div [formGroupName]="i" >
+              <div  class="input-field" >
+              <input matInput type="text"
+                  placeholder="Sastojak" formControlName="nazivSastojka" >
+              </div>
+              <button class="button btn-warning" type="button" (click)="remove(i)" >Obrisi</button>
+          </div>
+      </div>
+    </tr>
+    </table>
+      <button type="button"  class="btn btn-primary" (click)="addControl()" > Dodaj sastojke</button> <br>
+    
+   
+  </form>
+</div>

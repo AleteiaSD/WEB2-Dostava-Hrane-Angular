@@ -1,0 +1,9 @@
+table {
+    width: 100%;
+    background-color: burlywood;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+    background-color: burlywood;
+  }

@@ -1,0 +1,95 @@
+<section class="form-area">
+
+  <div class="col-lg-8">
+      <div class="form-area">
+          
+          <div class="form-input scroller" >
+              <h2>Registration Form</h2>
+              <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                  <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input formControlName="email" type="text" class="form-control" id="inputEmail" placeholder="primer123@gmail.com">
+                    <div *ngIf="f['email'].touched && f['email'].invalid" class="alert alert-danger"> 
+                      <div *ngIf="f['email'].errors && f['email'].errors['email']">Unesite email ispravno.</div>
+                      Polje ne moze biti prazno
+                  </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputUsername">Username</label>
+                    <input formControlName="username" type="text" class="form-control" id="inputUsername" placeholder="Username">
+                    <div *ngIf="f['username'].touched && f['username'].invalid" class="alert alert-danger"> 
+                      <div *ngIf="f['username'].errors && f['username'].errors['minLength']"></div>
+                     Minimalno 6 karaktera
+                  </div>                              
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName">First name</label>
+                    <input formControlName="firstName" placeholder="First Name" type="text" class="form-control" id="inputName">
+                    <div *ngIf="f['firstName'].touched && f['firstName'].invalid" class="alert alert-danger"> 
+                        <div *ngIf="f['firstName'].errors && f['firstName'].errors['minLength']"></div>
+                       Polje ne moze biti prazno
+                    </div></div>
+                  <div class="form-group">
+                    <label for="inputSurname">Second name</label>
+                    <input formControlName="lastName" placeholder="Last Name" type="text" class="form-control" id="inputSurname">
+                    <div *ngIf="f['lastName'].touched && f['lastName'].invalid" class="alert alert-danger"> 
+                        <div *ngIf="f['lastName'].errors && f['lastName'].errors['minLength']"></div>
+                       Polje ne moze biti prazno
+                    </div></div>
+                  <div class="form-group">
+                    <label for="inputDate">Date</label>
+                    <input formControlName="DateOfBirth" type="date" class="form-control" id="inputDate">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputAdress">Address</label>
+                    <input formControlName="address" placeholder="Address" type="text" class="form-control" id="inputAdress">
+                    <div *ngIf="f['address'].touched && f['address'].invalid" class="alert alert-danger"> 
+                        <div *ngIf="f['address'].errors && f['address'].errors['minLength']"></div>
+                       Polje ne moze biti prazno
+                    </div>
+
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control" for="inlineFormCustomSelectPref">Uloga</label>
+                    <select formControlName="tip" class="form-control" id="inlineFormCustomSelectPref">
+                     <!-- <option selected value="admin">Administrator</option>-->
+                      <option value="dostavljac">Dostavljac</option>
+                      <option value="potrosac">Potrosac</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="inlineFormCustomSelectPref">Picture</label>
+                    <img [src]="imgSource" height="200" width="200" />
+                    <br><br><br>
+                    <input id="file" (change)="onFileSelected($event)" type="file">                          
+                </div>
+                  <div class="form-group">
+                    <label for="password1">Password</label>
+                    <input placeholder="Password" formControlName="password1" type="password" class="form-control" id="password1">
+                    <div *ngIf="f['password1'].touched && f['password1'].invalid" class="alert alert-danger"> 
+                      <div *ngIf="f['password1'].errors && f['password1'].errors['minLength']"></div>
+                     Polje ne moze biti prazno
+                  </div></div>
+                  <div class="form-group">
+                    <label for="inputPassword4">Repeat Password</label>
+                    <input placeholder="Confirm" type="password" formControlName="password2" class="form-control" id="password2">
+                    <div *ngIf="f['password2'].touched && f['password2'].invalid" class="alert alert-danger"> 
+                      <div *ngIf="f['password2'].errors && f['password2'].errors['passwordMismatch']"></div>
+                      Ne podudaraju se passwordi
+                  </div>
+                    
+                  </div>
+                  <button  class="myform-button1 myform-btn" [disabled]="registrationForm.invalid" type="submit">Register</button>
+                                       
+              </form>
+              
+              <div >
+                <button class="myform-button1 myform-btn" routerLink="/login">Go to Login</button>
+            </div>
+          </div>
+      </div>
+  </div>
+
+
+</section>

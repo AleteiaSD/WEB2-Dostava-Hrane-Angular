@@ -1,0 +1,30 @@
+<app-dostava></app-dostava>
+<div>
+  <div class="main-container">
+    <div class="heading">
+      <h1 class="heading__title">Dobro dosli</h1>
+    </div>
+    <div class="cards">
+      <div *ngFor="let proizvod of proizvods;let i = index" class="card card-1">
+        <div  class="card__icon">{{proizvod.ime}} - {{proizvod.cena}} RSD</div>
+        <h2  class="card__title"></h2>
+        <p class="card__apply">
+            <button (click)="dodajProizvod(proizvod)" class="btn btn-primary">Dodaj</button>    
+        </p>
+      </div>
+    </div>
+  </div>
+ 
+<div *ngIf="!nastaviKupovinu()">
+
+</div>
+<div *ngIf="nastaviKupovinu()">
+<app-porudzbina-dalje></app-porudzbina-dalje>
+</div>
+</div>
+
+
+
+  
+
+

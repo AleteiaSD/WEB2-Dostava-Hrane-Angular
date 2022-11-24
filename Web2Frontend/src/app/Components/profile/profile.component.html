@@ -1,0 +1,176 @@
+
+<div class="row flex-lg-nowrap">
+  <div class="col-12 col-lg-auto mb-3">
+  </div>
+  <div class="col">
+    <div class="row">
+      <div class="col mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="e-profile">
+              <div class="row">
+                <div class="col-12 col-sm-auto mb-3">
+                  <div class="mx-auto" style="width: 140px;">
+                    <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                      <span style="color:burlywood; font: bold 8pt Arial;"><img width="140" height="140" src="{{'data:image/jpg;base64,' + slika.data}}" /></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                  <div class="text-center text-sm-left mb-2 mb-sm-0">
+                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{userInfo?.firstName}} {{userInfo?.secondName}}</h4>
+                    <p class="mb-0">{{userInfo?.username}}</p>
+                    <br>
+                    <div class="mt-2">
+                      <input style="size: 40;" value="Promeni" id="file" (change)="promeniSliku($event)" type="file">
+                    </div>
+                  </div>
+                  <div class="text-center text-sm-right">
+                    <span  class="badge badge-secondary">{{userInfo?.type}}</span>
+                    
+                  </div>
+                </div>
+              </div>
+              <ul  class="nav nav-tabs">
+                <li (click)="changeView(true)"  class="nav-item"><a class="nav-link">Profil</a></li>
+                <li (click)="changeView(false)" class="nav-item"><a class="nav-link">Promeni lozinku</a></li>
+              </ul>
+            <div *ngIf="option==='settings'" class="tab-content pt-3">
+                <div class="tab-pane active">
+                 
+                 
+                  <form [formGroup]="registrationForm" (ngSubmit)="updateProfileInfo()" class="form">
+                    <div class="row">
+                      <div class="col">
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Ime</label>
+                              <input [value]=userInfo?.firstName formControlName="firstName" class="form-control" type="text" name="name">
+                              <div *ngIf="f['firstName'].touched && f['firstName'].invalid" class="alert alert-danger"> 
+                                <div *ngIf="f['firstName'].errors && f['firstName'].errors['minLength']"></div>
+                               Ne moze biti prazno
+                            </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Prezime</label>
+                              <input [value]=userInfo?.secondName formControlName="lastName" name="nekoIme" class="form-control" type="text" >
+                              <div *ngIf="f['lastName'].touched && f['lastName'].invalid" class="alert alert-danger"> 
+                                <div *ngIf="f['lastName'].errors && f['lastName'].errors['minLength']"></div>
+                                Ne moze biti prazno
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Username</label>
+                                <input [value]=userInfo?.username formControlName="username" class="form-control" type="text" name="name">
+                                <div *ngIf="f['username'].touched && f['username'].invalid" class="alert alert-danger"> 
+                                    <div *ngIf="f['username'].errors && f['username'].errors['minLength']"></div>
+                                   Min 6 karaktera
+                                </div>  
+                            </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Adresa</label>
+                                <input [value]=userInfo?.address formControlName="address" class="form-control" type="text" name="username">
+                                <div *ngIf="f['address'].touched && f['address'].invalid" class="alert alert-danger"> 
+                                    <div *ngIf="f['address'].errors && f['address'].errors['minLength']"></div>
+                                    Ne moze biti prazno
+                                </div>  
+                            </div>
+                            </div>
+                          </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Email</label>
+                              <input [value]=userInfo?.email formControlName="email" class="form-control" type="text">
+                              <div *ngIf="f['email'].touched && f['email'].invalid" class="alert alert-danger"> 
+                                <div *ngIf="f['email'].errors && f['email'].errors['email']">Unesite email ispravno.</div>
+                                Ne moze biti prazno
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Datum Rodjenja</label>
+                                <input [value]=userInfo?.dateOfBirth formControlName="dateOfBirth" class="form-control" type="date" [value]="userInfo?.dateOfBirth">
+                                <div *ngIf="f['dateOfBirth'].touched && f['dateOfBirth'].invalid" class="alert alert-danger"> 
+                                    <div *ngIf="f['dateOfBirth'].errors && f['dateOfBirth'].errors['minLength']"></div>
+                                    Ne moze biti prazno
+                                </div>
+                            </div>
+                            </div>
+                          </div>
+                        
+                      </div>
+                    </div>
+                   
+                    <div class="row">
+                      <div class="col d-flex justify-content-end">
+                        <button class="btn btn-primary" [disabled]="registrationForm.invalid" type="submit">Sacuvaj</button>
+                      </div>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+
+              <div *ngIf="option!=='settings'" class="tab-content pt-3">
+                <div class="tab-pane active">
+                    <form [formGroup]="passwordForm"  (ngSubmit)="changePass()" class="form">
+                     
+                      <div class="row">
+                        <div class="col-12 col-sm-6 mb-3">
+                          <div class="mb-2"><b>Promeni lozinku</b></div>
+                          
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Nova lozinka</label>
+                                <input formControlName="password1" class="form-control" type="password">
+                                <div *ngIf="f1['password1'].touched && f1['password1'].invalid" class="alert alert-danger"> 
+                                  <div *ngIf="f1['password1'].errors && f1['password1'].errors['minLength']"></div>
+                                  Ne moze biti prazno
+                              </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Potvrdi novu <span class="d-none d-xl-inline">lozinku</span></label>
+                                <input formControlName="password2" class="form-control" type="password"></div>
+                                <div *ngIf="f1['password2'].touched && f1['password2'].invalid" class="alert alert-danger"> 
+                                  <div *ngIf="f1['password2'].errors && f1['password2'].errors['passwordMismatch']"></div>
+                                  Nisu iste lozinke
+                              </div>
+                              </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                      <div class="row">
+                        <div class="col d-flex justify-content-end">
+                          <button class="btn btn-primary" [disabled]="passwordForm.invalid" type="submit">Sacuvaj</button>
+                        </div>
+                      </div>
+                    </form>
+  
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
