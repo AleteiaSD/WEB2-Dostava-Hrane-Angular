@@ -1,0 +1,44 @@
+Provera trenutne verzije Node.js
+node -v
+Provera trenutne verzije npm-a
+npm -v
+
+Instalacija
+npm install -g @angular/cli@latest
+Provera verzije
+ng version ako ne radi (ukucaj: Set-ExecutionPolicy RemoteSigned -Scope CurrentUser)
+
+Kreiranje nove Angular CLI aplikacije
+ng new "my-new-angular-app"
+
+Pokretanjem komanda će se:
+-kreirati folder sa istim nazivom
+-skinuti neophodne Angular biblioteke 
+-instalirati i konfigurisati TypeScript
+-instalirati i konfigurisati Karma i Protractor
+
+Pozicioniranje u folder aplikacije
+cd my-new-angular-app
+
+Pokretanje aplikacije
+ng serve
+
+Aplikacija će po defaultu biti podignuta na portu 4200
+http://localhost:4200/
+
+Sledeća greška ukazuje da je port trenutno zauzet	
+Port 4200 is already in use. Use '--port' to specify a different port
+
+U tom slučaju potrebno je pri pokretanju aplikacije definisati i port				
+ng serve --port 9001
+
+Git
+git config --global http.proxy http://192.168.77.100:8080
+
+npm
+npm config set proxy http://192.168.77.100:8080
+npm config set https-proxy http://192.168.77.100:8080
+
+
+kreiranje foldera open terminal na folder koji zelim i napisem dole
+ng g c naziv --> kreiranje 
